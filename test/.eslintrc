@@ -1,0 +1,13 @@
+{
+    "env": {
+        "mocha": true,
+        "node": true
+    },
+    "globals": {
+        "expect": true,
+        "playbyplay": true
+    },
+    "rules": {
+        "no-unused-expressions": 0
+    }
+}
