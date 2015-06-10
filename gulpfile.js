@@ -11,6 +11,7 @@ const karma = require('karma');
 
 const watchJs = ['src/**/*.js', 'test/tests/**/*.js'];
 const lintJs = watchJs.concat(['gulpfile.js', 'test/karma.conf.js', 'demo/index.js']);
+const watchCss = ['src/**/*.css'];
 
 // Lint
 
@@ -33,6 +34,9 @@ gulp.task('clean', function(done) {
 });
 
 gulp.task('build', function(done) {
+    gulp.src('src/playbyplay-ui.css')
+        .pipe(gulp.dest(dev));
+
     esperanto.bundle({
         base: 'src',
         entry: index
@@ -89,7 +93,7 @@ gulp.task('watch', ['build'], function() {
         autoWatchBatchDelay: 500
     });
 
-    gulp.watch(watchJs, ['build']);
+    gulp.watch(watchJs.concat(watchCss), ['build']);
 });
 
 // Dist

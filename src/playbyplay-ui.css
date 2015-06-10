@@ -1,0 +1,33 @@
+#playbyplay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: 100%;
+    background: white;
+    z-index: 100;
+}
+
+.playbyplay__runs {
+    background: gray;
+    width: 100%;
+}
+
+.playbyplay__run__col {
+    width: 50%;
+}
+
+.playbyplay__run__input {
+    background: red;
+}
+
+.playbyplay__run__output {
+    background: yellow;
+}
+
+@media only screen and (max-width: 1000px){
+    .playbyplay__run__col {
+        display: block;
+        width: 100%;
+    }
+}
