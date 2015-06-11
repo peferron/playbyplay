@@ -8,10 +8,12 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const esperanto = require('esperanto');
 const karma = require('karma');
+const browserSync = require('browser-sync').create();
 
-const watchJs = ['src/**/*.js', 'test/tests/**/*.js'];
-const lintJs = watchJs.concat(['gulpfile.js', 'test/karma.conf.js', 'demo/index.js']);
+const watchJs = ['src/**/*.js', 'test/tests/**/*.js', 'demo_dev/**/*'];
+const lintJs = watchJs.concat(['gulpfile.js', 'test/karma.conf.js', 'demo_dev/index.js']);
 const watchCss = ['src/**/*.css'];
+const watch = watchJs.concat(watchCss);
 
 // Lint
 
@@ -24,6 +26,7 @@ gulp.task('lint', function() {
 
 // Build
 
+const src = 'src';
 const dev = 'dist_dev';
 const index = 'index.js';
 const lib = 'playbyplay-ui.js';
@@ -34,11 +37,11 @@ gulp.task('clean', function(done) {
 });
 
 gulp.task('build', function(done) {
-    gulp.src('src/playbyplay-ui.css')
+    gulp.src(path.join(src, 'playbyplay-ui.css'))
         .pipe(gulp.dest(dev));
 
     esperanto.bundle({
-        base: 'src',
+        base: src,
         entry: index
     }).then(function(bundle) {
         const res = bundle.toUmd({
@@ -85,7 +88,18 @@ gulp.task('test', ['lint', 'build'], function(done) {
     }, done);
 });
 
+// Watch
+
 gulp.task('watch', ['build'], function() {
+    browserSync.init({
+        server: {
+            baseDir: './',
+            directory: true
+        },
+        startPath: 'demo_dev/index.html',
+        browser: 'google chrome'
+    });
+
     karma.server.start({
         configFile: karmaConf,
         singleRun: false,
@@ -93,7 +107,11 @@ gulp.task('watch', ['build'], function() {
         autoWatchBatchDelay: 500
     });
 
-    gulp.watch(watchJs.concat(watchCss), ['build']);
+    gulp.watch(watch, ['build-reload']);
+});
+
+gulp.task('build-reload', ['build'], function() {
+    browserSync.reload();
 });
 
 // Dist
