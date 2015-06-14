@@ -11,5 +11,5 @@ $(function() {
         });
     }
 
-    $('#show').on('click', show).click();
+    $('#show').on('click', show);
 });
