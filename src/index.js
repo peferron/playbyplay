@@ -56,6 +56,5 @@ function hide() {
     try {
         const container = document.getElementById(containerId);
         container.parentNode.removeChild(container);
-    } catch (e) { // eslint-disable-line no-empty
-    }
+    } catch (e) {}
 }
