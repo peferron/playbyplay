@@ -10,9 +10,21 @@ const esperanto = require('esperanto');
 const karma = require('karma');
 const browserSync = require('browser-sync').create();
 
-const watchJs = ['src/**/*.js', 'test/tests/**/*.js', 'demo_dev/**/*'];
-const lintJs = watchJs.concat(['gulpfile.js', 'test/karma.conf.js', 'demo_dev/index.js']);
+const watchJs = [
+    'src/**/*.js',
+    'test/tests/**/*.js',
+    'demo_dev/index.js',
+    'demo_dev/playbyplay-mock.js'
+];
+
+const lintJs = watchJs.concat([
+    'gulpfile.js',
+    'test/karma.conf.js',
+    'demo_dev/index.js'
+]);
+
 const watchCss = ['src/**/*.css'];
+
 const watch = watchJs.concat(watchCss);
 
 // Lint
