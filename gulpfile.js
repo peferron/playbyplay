@@ -52,6 +52,11 @@ gulp.task('clean', function(done) {
 gulp.task('build', function(done) {
     gulp.src(path.join(src, 'index.css'))
         .pipe($.rename(libCss))
+        .pipe(gulp.dest(dev))
+        .pipe($.rename(path.basename(libCss, '.css') + '.min.css'))
+        .pipe($.sourcemaps.init())
+        .pipe($.minifyCss())
+        .pipe($.sourcemaps.write('./'))
         .pipe(gulp.dest(dev));
 
     esperanto.bundle({
@@ -79,7 +84,7 @@ gulp.task('build', function(done) {
             .pipe(gulp.dest(dev))
             .pipe($.filter(['*', '!**/*.js.map']))
             .pipe($.rename(path.basename(libJs, '.js') + '.min.js'))
-            .pipe($.sourcemaps.init({loadMaps: true, sourceRoot: './'}))
+            .pipe($.sourcemaps.init({loadMaps: true}))
             .pipe($.uglify())
             .pipe($.sourcemaps.write('./'))
             .pipe(gulp.dest(dev))
