@@ -19,11 +19,11 @@
         }
     ];
 
-    window.playbyplay = {
-        load: function(callback) {
+    window.localhistory = {
+        load: function(key, callback) {
             callback(null, runs);
         },
-        clear: function(callback) {
+        clear: function(key, callback) {
             runs = [];
             callback(null);
         }

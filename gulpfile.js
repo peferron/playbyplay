@@ -14,7 +14,7 @@ const watchJs = [
     'src/**/*.js',
     'test/tests/**/*.js',
     'demo_dev/index.js',
-    'demo_dev/playbyplay-mock.js'
+    'demo_dev/localhistory-mock.js'
 ];
 
 const lintJs = watchJs.concat([

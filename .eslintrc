@@ -4,7 +4,7 @@
         "browser": true
     },
     "globals": {
-        "playbyplay": true
+        "localhistory": true
     },
     "ecmaFeatures": {
         "arrowFunctions": true,

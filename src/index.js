@@ -1,11 +1,16 @@
 import containerInnerHTML from './html';
 
+const key = 'playbyplay_0fE#n9asNy4^MD1jfj&!';
 const containerId = 'playbyplay';
 
-export const save = playbyplay.save;
+export function save(run, options, callback) {
+    setTimeout(() => {
+        localhistory.save(key, run, options, callback);
+    }, 0);
+}
 
 export function show(callback) {
-    playbyplay.load((err, runs) => {
+    localhistory.load(key, (err, runs) => {
         if (err) {
             callback(err);
             return;
@@ -30,7 +35,7 @@ function showRuns(runs, callback) {
                 return;
             case 'playbyplay__clear':
                 hide();
-                playbyplay.clear(() => {
+                localhistory.clear(key, () => {
                     show(callback);
                 });
                 return;
