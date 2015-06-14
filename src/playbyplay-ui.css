@@ -24,13 +24,12 @@
     color: #4169E1;
 }
 
-.playbyplay__hide, .playbyplay__clear {
-    margin: 10px 0 10px 10px;
-    min-width: 100px;
+.playbyplay__hide {
+    margin: 10px;
 }
 
-.playbyplay__empty {
-    margin-left: 10px;
+.playbyplay__hide, .playbyplay__clear {
+    min-width: 100px;
 }
 
 .playbyplay__runs {

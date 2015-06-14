@@ -10,20 +10,12 @@ const entities = {
 const escapeHTML = str => String(str).replace(/[&<>"'\/]/g, s => entities[s]);
 
 const containerInnerHTML = runs =>
-`<button class="playbyplay__hide">
-    &lt; Back
-</button><!--
--->${runs && runs.length ? runsHTML(runs) : emptyHTML}`;
+`<button class="playbyplay__hide">&lt; Back</button>` +
+`${runs.length ? runsHTML(runs) : 'History is empty.'}`;
 
 const runsHTML = runs =>
-`<button class="playbyplay__clear">
-    Clear
-</button>
-<table class="playbyplay__runs">
-    ${runs.map(runHTML).join('')}
-</table>`;
-
-const emptyHTML = `<span class="playbyplay__empty">History is empty.</span>`;
+`<button class="playbyplay__clear">Clear</button>
+<table class="playbyplay__runs">${runs.map(runHTML).join('')}</table>`;
 
 const runHTML = (run, index) =>
 `<tr class="playbyplay__run ${statusClass(run)}">
