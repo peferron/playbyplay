@@ -29,6 +29,10 @@
     min-width: 100px;
 }
 
+.playbyplay__empty {
+    margin-left: 10px;
+}
+
 .playbyplay__runs {
     width: 100%;
     border-collapse: collapse;

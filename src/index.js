@@ -30,8 +30,9 @@ function showRuns(runs, callback) {
                 return;
             case 'playbyplay__clear':
                 hide();
-                playbyplay.clear();
-                callback(null);
+                playbyplay.clear(() => {
+                    show(callback);
+                });
                 return;
             case 'playbyplay__run__restore':
                 // Use getAttribute instead of dataset for compatibility:

@@ -77,9 +77,13 @@ playpen: application terminated with error code 101`,
         }
     ];
 
-    window.playbyplay = {};
-
-    window.playbyplay.load = function(callback) {
-        callback(null, runs);
+    window.playbyplay = {
+        load: function(callback) {
+            callback(null, runs);
+        },
+        clear: function(callback) {
+            runs = [];
+            callback(null);
+        }
     };
 }());
