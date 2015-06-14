@@ -4,14 +4,14 @@ module.exports = function(config) {
         files: [
             'node_modules/babel-core/browser-polyfill.js',
             'localhistory/localhistory.js',
-            'dist_dev/playbyplay-ui.js',
+            'dist_dev/playbyplay.js',
             'test/tests/**/*.js'
         ],
         frameworks: ['mocha', 'chai-as-promised', 'chai'],
         reporters: ['progress', 'coverage'],
         browsers: ['PhantomJS'],
         preprocessors: {
-            'dist_dev/playbyplay-ui.js': ['coverage'],
+            'dist_dev/playbyplay.js': ['coverage'],
             'test/tests/**/*.js': ['babel']
         },
         babelPreprocessor: {

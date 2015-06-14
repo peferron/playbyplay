@@ -1,6 +1,6 @@
 $(function() {
     function show() {
-        playbyplayui.show(function(err, run) {
+        playbyplay.show(function(err, run) {
             if (err) {
                 alert(err);
                 return;

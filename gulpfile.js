@@ -40,28 +40,30 @@ gulp.task('lint', function() {
 
 const src = 'src';
 const dev = 'dist_dev';
-const index = 'index.js';
-const lib = 'playbyplay-ui.js';
-const exportedName = 'playbyplayui';
+const indexJs = 'index.js';
+const exportedName = 'playbyplay';
+const libJs = exportedName + '.js';
+const libCss = exportedName + '.css';
 
 gulp.task('clean', function(done) {
     del([dev, 'test/coverage'], done);
 });
 
 gulp.task('build', function(done) {
-    gulp.src(path.join(src, 'playbyplay-ui.css'))
+    gulp.src(path.join(src, 'index.css'))
+        .pipe($.rename(libCss))
         .pipe(gulp.dest(dev));
 
     esperanto.bundle({
         base: src,
-        entry: index
+        entry: indexJs
     }).then(function(bundle) {
         const res = bundle.toUmd({
             strict: true,
             sourceMap: true,
-            sourceMapSource: index,
-            sourceMapFile: lib,
-            name: exportedName,
+            sourceMapSource: indexJs,
+            sourceMapFile: libJs,
+            name: 'playbyplay',
             useStrict: false
         });
 
@@ -70,13 +72,13 @@ gulp.task('build', function(done) {
         fs.writeFileSync(map, res.map.toString());
 
         $.file(map, res.code, {src: true})
-            .pipe($.rename(lib))
+            .pipe($.rename(libJs))
             .pipe($.sourcemaps.init({loadMaps: true}))
             .pipe($.babel({blacklist: ['useStrict']}))
             .pipe($.sourcemaps.write('./', {addComment: false, sourceRoot: './'}))
             .pipe(gulp.dest(dev))
             .pipe($.filter(['*', '!**/*.js.map']))
-            .pipe($.rename(path.basename(lib, '.js') + '.min.js'))
+            .pipe($.rename(path.basename(libJs, '.js') + '.min.js'))
             .pipe($.sourcemaps.init({loadMaps: true, sourceRoot: './'}))
             .pipe($.uglify())
             .pipe($.sourcemaps.write('./'))

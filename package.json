@@ -1,5 +1,5 @@
 {
-  "name": "playbyplay-ui",
+  "name": "playbyplay",
   "version": "1.0.0",
   "description": "LocalStorage history for language playgrounds.",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peferron/playbyplay-ui.git"
+    "url": "git+https://github.com/peferron/playbyplay.git"
   },
   "keywords": [
     "history",
@@ -21,9 +21,9 @@
   "author": "Pierre-Emile Ferron <peferron@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/peferron/playbyplay-ui/issues"
+    "url": "https://github.com/peferron/playbyplay/issues"
   },
-  "homepage": "https://github.com/peferron/playbyplay-ui#readme",
+  "homepage": "https://github.com/peferron/playbyplay#readme",
   "devDependencies": {
     "babel": "^5.5.4",
     "babel-core": "^5.5.4",
