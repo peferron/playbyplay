@@ -3,6 +3,8 @@ import containerInnerHTML from './html';
 const key = 'playbyplay_0fE#n9asNy4^MD1jfj&!';
 const containerId = 'playbyplay';
 
+export const supported = localhistory.supported;
+
 export function save(run, options, callback) {
     setTimeout(() => {
         localhistory.save(key, run, options, callback);
