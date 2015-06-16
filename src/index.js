@@ -11,17 +11,29 @@ export function save(run, options, callback) {
     }, 0);
 }
 
-export function show(callback) {
+// options is optional, callback is required. Usually, required arguments go first, but having the
+// callback last leads to cleaner calling code with closures.
+export function show(options, callback) {
+    const cb = typeof options === 'function' ? options : callback;
+    const opts = fillShowOptions(typeof options === 'object' ? options : {});
+
     localhistory.load(key, (err, runs) => {
         if (err) {
-            callback(err);
+            cb(err);
             return;
         }
-        showRuns(runs, callback);
+        showRuns(runs, opts, cb);
     });
 }
 
-function showRuns(runs, callback) {
+function fillShowOptions(options) {
+    if (!options.parent) {
+        options.parent = document.body;
+    }
+    return options;
+}
+
+function showRuns(runs, options, callback) {
     hide();
 
     const container = document.createElement('div');
@@ -53,7 +65,7 @@ function showRuns(runs, callback) {
         }
     }, false);
 
-    document.body.appendChild(container);
+    options.parent.appendChild(container);
 }
 
 function hide() {
