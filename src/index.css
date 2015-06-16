@@ -1,4 +1,7 @@
 #playbyplay {
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 14px;
+    color: #333;
     position: absolute;
     top: 0;
     right: 0;
@@ -6,30 +9,27 @@
     min-height: 100%;
     background: white;
     z-index: 100;
-    color: #333;
 }
 
-#playbyplay, #playbyplay button {
+.playbyplay__hide, .playbyplay__clear, .playbyplay__run__restore {
     font-size: 14px;
-    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-}
-
-#playbyplay button {
-    background: none repeat scroll 0 0 transparent;
-    border: 1px solid #CCC;
-    border-radius: 3px;
+    border: 0;
+    border-radius: 5px;
     border-spacing: 0;
     padding: 10px;
     cursor: pointer;
-    color: #4169E1;
-}
-
-.playbyplay__hide {
-    margin: 10px;
+    background: #F0F0F0;
+    color: #333;
 }
 
 .playbyplay__hide, .playbyplay__clear {
     min-width: 100px;
+}
+
+.playbyplay__hide, .playbyplay__run__restore {
+    margin: 10px;
+    background: #00AF33;
+    color: white;
 }
 
 .playbyplay__runs {
@@ -72,10 +72,6 @@
 
 .playbyplay__run--error .playbyplay__run__output {
     color: red;
-}
-
-.playbyplay__run__restore {
-    margin: 10px;
 }
 
 @media only screen and (max-width: 1000px){
