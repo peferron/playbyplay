@@ -1,4 +1,4 @@
-$(function() {
+window.onload = function() {
     function show() {
         playbyplay.show(function(err, run) {
             if (err) {
@@ -6,10 +6,16 @@ $(function() {
                 return;
             }
             if (run) {
-                $('#input').text(run.input);
+                setInput(run.input);
             }
         });
     }
 
-    $('#show').on('click', show);
-});
+    function setInput(text) {
+        var input = document.getElementById('input');
+        input.innerHTML = '';
+        input.appendChild(document.createTextNode(text));
+    }
+
+    document.getElementById('show').addEventListener('click', show, false);
+};
