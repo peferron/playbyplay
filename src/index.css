@@ -1,7 +1,4 @@
 #playbyplay {
-    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 14px;
-    color: #333;
     position: absolute;
     top: 0;
     right: 0;
@@ -11,71 +8,76 @@
     z-index: 100;
 }
 
-.playbyplay__hide, .playbyplay__clear, .playbyplay__run__restore {
+#playbyplay, .playbyplay-button {
+    font-family: Helvetica, arial, sans-serif;
     font-size: 14px;
+    color: #333;
+}
+
+.playbyplay-hide, .playbyplay-clear, .playbyplay-restore {
     border: 0;
     border-radius: 5px;
     border-spacing: 0;
     padding: 10px;
     cursor: pointer;
     background: #F0F0F0;
-    color: #333;
 }
 
-.playbyplay__hide, .playbyplay__clear {
+.playbyplay-hide, .playbyplay-clear {
     min-width: 100px;
 }
 
-.playbyplay__hide, .playbyplay__run__restore {
+.playbyplay-hide, .playbyplay-restore {
     margin: 10px;
     background: #00AF33;
     color: white;
 }
 
-.playbyplay__runs {
+.playbyplay-runs {
     width: 100%;
     border-collapse: collapse;
 }
 
-.playbyplay__run {
+.playbyplay-run {
     border-top: 1px solid #CCC;
 }
 
-.playbyplay__run__col {
+.playbyplay-col {
     width: 50%;
     vertical-align: top;
 }
 
-.playbyplay__run pre {
-    margin: 10px;
-}
-
-.playbyplay__run:nth-child(odd) {
+.playbyplay-run:nth-child(odd) {
     background: #F7F7F7;
 }
 
-.playbyplay__run__output {
-    color: #666;
+.playbyplay-pre {
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    margin: 10px;
 }
 
-.playbyplay__run__output pre {
+.playbyplay-output .playbyplay-pre {
     white-space: pre-wrap;
 }
 
-.playbyplay__run--success .playbyplay__run__output {
+.playbyplay-output {
+    color: #666;
+}
+
+.playbyplay-status-success .playbyplay-output {
     color: #228B22;
 }
 
-.playbyplay__run--warning .playbyplay__run__output {
+.playbyplay-status-warning .playbyplay-output {
     color: #FF7F50;
 }
 
-.playbyplay__run--error .playbyplay__run__output {
+.playbyplay-status-error .playbyplay-output {
     color: red;
 }
 
 @media only screen and (max-width: 1000px){
-    .playbyplay__run__col {
+    .playbyplay-col {
         display: block;
         width: 100%;
     }

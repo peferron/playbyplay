@@ -31,17 +31,19 @@ function showRuns(runs, callback) {
 
     container.addEventListener('click', e => {
         switch (e && e.target && e.target.className) {
-            case 'playbyplay__hide':
+            case 'playbyplay-button playbyplay-hide':
                 hide();
                 callback(null);
                 return;
-            case 'playbyplay__clear':
+
+            case 'playbyplay-button playbyplay-clear':
                 hide();
                 localhistory.clear(key, () => {
                     show(callback);
                 });
                 return;
-            case 'playbyplay__run__restore':
+
+            case 'playbyplay-button playbyplay-restore':
                 // Use getAttribute instead of dataset for compatibility:
                 // http://caniuse.com/#feat=dataset
                 const index = e.target.getAttribute('data-index');
