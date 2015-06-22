@@ -19,7 +19,9 @@ export function show(options, callback) {
 
     localhistory.load(key, (err, runs) => {
         if (err) {
-            cb(err);
+            if (opts.onShow) {
+                opts.onShow(err);
+            }
             return;
         }
         showRuns(runs, opts, cb);
@@ -39,7 +41,7 @@ function showRuns(runs, options, callback) {
     const container = document.createElement('div');
 
     container.id = containerId;
-    container.innerHTML = containerInnerHTML(runs);
+    container.innerHTML = containerInnerHTML(runs.reverse());
 
     container.addEventListener('click', e => {
         switch (e && e.target && e.target.className) {
@@ -65,7 +67,16 @@ function showRuns(runs, options, callback) {
         }
     }, false);
 
-    options.parent.appendChild(container);
+    let err = null;
+    try {
+        options.parent.appendChild(container);
+    } catch (e) {
+        err = e;
+    }
+
+    if (options.onShow) {
+        options.onShow(err);
+    }
 }
 
 function hide() {

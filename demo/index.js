@@ -1,9 +1,9 @@
 window.onload = function() {
     var runs = [
         {
-            input: 'fn main() {\n    println!("Hello World!");\n}',
-            output: 'Hello World!\n\nProgram ended.',
-            status: 'success'
+            input: 'fn main() {\n    yikes\n}',
+            output: '<anon>:2:5: 2:10 error: unresolved name `yikes`\n<anon>:2     yikes\n             ^~~~~\nerror: aborting due to previous error\nplaypen: application terminated with error code 101\n\nCompilation failed.',
+            status: 'error'
         },
         {
             input: 'fn main() {\n    let a = 0;\n}',
@@ -11,9 +11,9 @@ window.onload = function() {
             status: 'warning'
         },
         {
-            input: 'fn main() {\n    yikes\n}',
-            output: '<anon>:2:5: 2:10 error: unresolved name `yikes`\n<anon>:2     yikes\n             ^~~~~\nerror: aborting due to previous error\nplaypen: application terminated with error code 101\n\nCompilation failed.',
-            status: 'error'
+            input: 'fn main() {\n    println!("Hello World!");\n}',
+            output: 'Hello World!\n\nProgram ended.',
+            status: 'success'
         }
     ];
 

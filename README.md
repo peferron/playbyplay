@@ -46,14 +46,17 @@ var run = {
 playbyplay.append(run);
 ```
 
-## playbyplay.show(callback)
+## playbyplay.show([options], callback)
 
 Shows a view of all runs previously appended to history. The user can either restore a run, or dismiss the view.
 
 ##### Arguments
 
-* **`callback`** is a callback function, taking two arguments:
-  * **`err`** is `null` if the runs were shown successfully, or an `Error` object if the runs were not shown successfully.
+* **`[options]`** is an optional set of key/value pairs:
+  * **`parent`** is the DOM element into which the view will be appended. Defaults to `document.body`.
+  * **`onShow`** is a callback function, taking one argument:
+    * **`err`** is `null` if the runs were shown successfully, or an `Error` object if the runs were not shown successfully.
+* **`callback`** is a callback function, taking one argument:
   * **`run`** is the run to restore, or `undefined` if the user dismissed the view.
 
 ##### Example

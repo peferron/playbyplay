@@ -11,11 +11,13 @@ const escapeHTML = str => String(str).replace(/[&<>"'\/]/g, s => entities[s]);
 
 const containerInnerHTML = runs =>
 `<button class="playbyplay-button playbyplay-hide">&lt; Back</button>` +
-`${runs.length ? runsHTML(runs) : 'History is empty.'}`;
+`${runs.length ? runsHTML(runs) : emptyHTML}`;
 
 const runsHTML = runs =>
 `<button class="playbyplay-button playbyplay-clear">Clear</button>
-<table class="playbyplay-runs">${runs.map(runHTML).join('')}</table>`;
+<table class="playbyplay-runs">
+    ${runs.map(runHTML).join('')}
+</table>`;
 
 const runHTML = (run, index) =>
 `<tr class="playbyplay-run ${statusClass(run)}">
@@ -33,5 +35,7 @@ const runHTML = (run, index) =>
 </tr>`;
 
 const statusClass = run => run.status ? `playbyplay-status-${escapeHTML(run.status)}` : '';
+
+const emptyHTML = `<span class="playbyplay-empty">History is empty.</span>`;
 
 export default containerInnerHTML;
