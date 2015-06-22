@@ -6,12 +6,15 @@ A [very simple demo](https://rawgit.com/peferron/playbyplay/master/demo/index.ht
 
 # Installation
 
-1. Download `playbyplay-bundle.min.js` and `playbyplay.min.css` from the `dist` directory.
+1. Download `localhistory.min.js` from the `localhistory` directory.
+2. Download `playbyplay.min.js` and `playbyplay.min.css` from the `dist` directory.
 2. Add them to your web page:
     
     ```html
     <link rel="stylesheet" href="playbyplay.min.css">
-    <script src="playbyplay-bundle.min.js"></script>
+    <!-- localhistory.min.js must be before playbyplay.min.js -->
+    <script src="localhistory.min.js"></script>
+    <script src="playbyplay.min.js"></script>
     ```
 
 # Usage
