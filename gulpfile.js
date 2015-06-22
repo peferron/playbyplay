@@ -13,14 +13,14 @@ const browserSync = require('browser-sync').create();
 const watchJs = [
     'src/**/*.js',
     'test/tests/**/*.js',
-    'demo_dev/index.js',
-    'demo_dev/localhistory-mock.js'
+    'demo/index.js',
+    'demo/localhistory-mock.js'
 ];
 
 const lintJs = watchJs.concat([
     'gulpfile.js',
     'test/karma.conf.js',
-    'demo_dev/index.js'
+    'demo/index.js'
 ]);
 
 const watchCss = ['src/**/*.css'];
@@ -115,7 +115,7 @@ gulp.task('watch', ['build'], function() {
             baseDir: './',
             directory: true
         },
-        startPath: 'demo_dev/index.html',
+        startPath: 'demo/index_dev.html',
         browser: 'google chrome'
     });
 
