@@ -3,7 +3,7 @@
         "jquery": true
     },
     "globals": {
-        "playbyplay": true
+        "playbyplay": false
     },
     "rules": {
         "no-var": 0,
