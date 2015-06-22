@@ -1,26 +1,25 @@
 describe('after clearing', () => {
     beforeEach(playbyplay.clear);
 
-    describe('and showing with default parent', () => {
-        beforeEach(done => {
-            playbyplay.show({onShow: done});
-        });
-
-        it('should append #playbyplay to the body', () => {
-            expect($('#playbyplay').parent()).to.match('body');
+    it('should append #playbyplay to the body', done => {
+        playbyplay.show({
+            onShow: err => {
+                expect(err).to.be.null;
+                expect($('#playbyplay').parent()).to.match('body');
+                done();
+            }
         });
     });
 
-    describe('and showing with non-default parent', () => {
-        let $parent;
-
-        beforeEach(done => {
-            $parent = $('<div></div>').appendTo('body');
-            playbyplay.show({parent: $parent[0], onShow: done});
-        });
-
-        it('should append #playbyplay to the parent', () => {
-            expect($('#playbyplay').parent()).to.match($parent);
+    it('should append #playbyplay to the parent', done => {
+        const $parent = $('<div></div>').appendTo('body');
+        playbyplay.show({
+            parent: $parent[0],
+            onShow: err => {
+                expect(err).to.be.null;
+                expect($('#playbyplay').parent()).to.match($parent);
+                done();
+            }
         });
     });
 
