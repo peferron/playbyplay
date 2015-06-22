@@ -5,9 +5,9 @@ const containerId = 'playbyplay';
 
 export const supported = localhistory.supported;
 
-export function save(run, options, callback) {
+export function append(run, options, callback) {
     setTimeout(() => {
-        localhistory.save(key, run, options, callback);
+        localhistory.append(key, run, options, callback);
     }, 0);
 }
 
@@ -50,7 +50,7 @@ function showRuns(runs, options, callback) {
 
             case 'playbyplay-button playbyplay-clear':
                 hide();
-                localhistory.clear(key, () => {
+                clear(() => {
                     show(callback);
                 });
                 return;
@@ -73,4 +73,8 @@ function hide() {
         const container = document.getElementById(containerId);
         container.parentNode.removeChild(container);
     } catch (e) {}
+}
+
+export function clear(callback) {
+    localhistory.clear(key, callback);
 }

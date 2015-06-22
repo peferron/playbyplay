@@ -8,6 +8,7 @@
     "rules": {
         "no-var": 0,
         "vars-on-top": 0,
-        "no-alert": 0
+        "no-alert": 0,
+        "max-len": 0
     }
 }
