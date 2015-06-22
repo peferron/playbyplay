@@ -31,5 +31,19 @@ describe('parent: after clearing', () => {
         playbyplay.show({parent: $parent[0], onShow: onShow}, callback);
     });
 
+    it('should call the callback with an error when the specified parent is invalid', done => {
+        function onShow(err) {
+            expect(err).to.not.be.null;
+            expect($('#playbyplay')).to.not.exist;
+            done();
+        }
+
+        function callback() {
+            assert.fail();
+        }
+
+        playbyplay.show({parent: {}, onShow: onShow}, callback);
+    });
+
     after(playbyplay.clear);
 });
