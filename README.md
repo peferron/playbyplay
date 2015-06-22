@@ -1,4 +1,4 @@
-# playbyplay
+# playbyplay [![Build Status](https://travis-ci.org/peferron/playbyplay.svg)](https://travis-ci.org/peferron/playbyplay) [![Coverage Status](https://coveralls.io/repos/peferron/playbyplay/badge.svg)](https://coveralls.io/r/peferron/playbyplay)
 
 playbyplay is a browser library that shows users of language playgrounds a history of their experiments.
 
