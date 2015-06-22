@@ -16,7 +16,7 @@ describe('after clearing', () => {
         });
     });
 
-    describe('and saving a first run', () => {
+    describe('and appending a first run', () => {
         const first = {input: 'a1', output: 'b1', status: 's1'};
 
         beforeEach(done => {
@@ -38,7 +38,7 @@ describe('after clearing', () => {
             });
         });
 
-        describe('and saving a second run', () => {
+        describe('and appending a second run', () => {
             const second = {input: 'a2', output: 'b2', status: 's1'};
 
             beforeEach(done => {
