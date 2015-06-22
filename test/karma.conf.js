@@ -3,7 +3,7 @@ module.exports = function(config) {
         basePath: '../',
         files: [
             'node_modules/babel-core/browser-polyfill.js',
-            'localhistory/localhistory.js',
+            'localhistory/localhistory.min.js',
             'dist_dev/playbyplay.js',
             'test/tests/**/*.js'
         ],
