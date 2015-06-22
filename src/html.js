@@ -1,13 +1,10 @@
-const entities = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-    '/': '&#x2F;'
-};
+const escapeClass = str => String(str).replace(/[^a-z0-9]/g, '');
 
-const escapeHTML = str => String(str).replace(/[&<>"'\/]/g, s => entities[s]);
+const escapeHTML = str => {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+};
 
 const containerInnerHTML = runs =>
 `<button class="playbyplay-button playbyplay-hide">&lt; Back</button>` +
@@ -28,13 +25,13 @@ const runHTML = (run, index) =>
         <pre class="playbyplay-pre">${escapeHTML(run.output)}</pre>
     </td>
     <td class="playbyplay-col">
-        <button class="playbyplay-button playbyplay-restore" data-index="${escapeHTML(index)}">
+        <button class="playbyplay-button playbyplay-restore" data-index="${index}">
             Restore
         </button>
     </td>
 </tr>`;
 
-const statusClass = run => run.status ? `playbyplay-status-${escapeHTML(run.status)}` : '';
+const statusClass = run => run.status ? `playbyplay-status-${escapeClass(run.status)}` : '';
 
 const emptyHTML = `<span class="playbyplay-empty">History is empty.</span>`;
 

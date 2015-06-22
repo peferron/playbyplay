@@ -38,10 +38,13 @@ function fillShowOptions(options) {
 function showRuns(runs, options, callback) {
     hide();
 
+    // The most recently appended runs should be on top.
+    runs.reverse();
+
     const container = document.createElement('div');
 
     container.id = containerId;
-    container.innerHTML = containerInnerHTML(runs.reverse());
+    container.innerHTML = containerInnerHTML(runs);
 
     container.addEventListener('click', e => {
         switch (e && e.target && e.target.className) {

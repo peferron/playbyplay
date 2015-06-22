@@ -1,6 +1,4 @@
 describe('after clearing', () => {
-    const pbp = () => document.getElementById('playbyplay');
-
     beforeEach(playbyplay.clear);
 
     describe('and showing with default parent', () => {
@@ -9,23 +7,20 @@ describe('after clearing', () => {
         });
 
         it('should append #playbyplay to the body', () => {
-            expect(pbp()).to.not.be.null;
-            expect(pbp().parentNode).to.equal(document.body);
+            expect($('#playbyplay').parent()).to.match('body');
         });
     });
 
     describe('and showing with non-default parent', () => {
-        let parent;
+        let $parent;
 
         beforeEach(done => {
-            parent = document.createElement('div');
-            document.body.appendChild(parent);
-            playbyplay.show({parent: parent, onShow: done});
+            $parent = $('<div></div>').appendTo('body');
+            playbyplay.show({parent: $parent[0], onShow: done});
         });
 
         it('should append #playbyplay to the parent', () => {
-            expect(pbp()).to.not.be.null;
-            expect(pbp().parentNode).to.equal(parent);
+            expect($('#playbyplay').parent()).to.match($parent);
         });
     });
 
