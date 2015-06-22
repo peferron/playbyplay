@@ -1,3 +1,5 @@
-it('should be supported', () => {
-    expect(playbyplay.supported).to.be.true;
+describe('support', () => {
+    it('should be supported', () => {
+        expect(playbyplay.supported).to.be.true;
+    });
 });

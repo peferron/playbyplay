@@ -6,7 +6,9 @@
     },
     "globals": {
         "expect": false,
-        "playbyplay": false
+        "assert": false,
+        "playbyplay": false,
+        "utils": false
     },
     "rules": {
         "no-unused-expressions": 0

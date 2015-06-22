@@ -5,6 +5,7 @@ module.exports = function(config) {
             'node_modules/babel-core/browser-polyfill.js',
             'localhistory/localhistory.min.js',
             'dist_dev/playbyplay.js',
+            'test/utils.js',
             'test/tests/**/*.js'
         ],
         frameworks: ['mocha', 'chai-as-promised', 'chai-jquery', 'chai', 'jquery-2.1.0'],
@@ -12,6 +13,7 @@ module.exports = function(config) {
         browsers: ['PhantomJS'],
         preprocessors: {
             'dist_dev/playbyplay.js': ['coverage'],
+            'test/utils.js': ['babel'],
             'test/tests/**/*.js': ['babel']
         },
         babelPreprocessor: {

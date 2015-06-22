@@ -1,31 +1,22 @@
-function expectRuns(runs) {
-    const $runs = $('.playbyplay-run');
-    expect($runs.length).to.equal(runs.length);
-
-    runs.forEach((run, i) => {
-        const $run = $runs.eq(i);
-        expect($('.playbyplay-input pre', $run)).to.have.text(run.input);
-        expect($('.playbyplay-output pre', $run)).to.have.text(run.output);
-        expect($('.playbyplay-restore', $run)).to.have.data('index', i);
-        if (run.status) {
-            expect($run).to.have.class(`playbyplay-status-${run.status}`);
-        }
-    });
-}
-
-describe('after clearing and appending a run and showing', () => {
+describe('clear: after clearing and appending a run and showing', () => {
     const run = {input: 'i1', output: 'o1', status: 's1'};
 
     beforeEach(done => {
-        playbyplay.clear(() => {
-            playbyplay.append(run, () => {
-                playbyplay.show({onShow: done});
+        playbyplay.clear(clearErr => {
+            expect(clearErr).to.be.null;
+
+            playbyplay.append(run, appendErr => {
+                expect(appendErr).to.be.null;
+
+                playbyplay.show({onShow: done}, () => {
+                    assert.fail();
+                });
             });
         });
     });
 
     it('should contain the run', () => {
-        expectRuns([run]);
+        utils.expectRuns([run]);
     });
 
     describe('and clearing', () => {

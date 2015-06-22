@@ -1,36 +1,21 @@
-describe('after clearing and showing', () => {
-    let callbackErr;
-    let callbackRun;
+describe('hide: after clearing', () => {
+    beforeEach(playbyplay.clear);
 
-    beforeEach(done => {
-        callbackErr = undefined;
-        callbackRun = undefined;
-
-        playbyplay.clear(() => {
-            playbyplay.show({onShow: done}, (err, run) => {
-                callbackErr = err;
-                callbackRun = run;
-            });
-        });
-    });
-
-    it('should append #playbyplay', () => {
-        expect($('#playbyplay')).to.exist;
-    });
-
-    describe('and hiding', () => {
-        beforeEach(() => {
+    it('should call the callback and hide', done => {
+        function onShow(err) {
+            expect(err).to.be.null;
+            expect($('#playbyplay')).to.exist;
             $('.playbyplay-hide').click();
-        });
+        }
 
-        it('should remove #playbyplay', () => {
+        function callback(err, runToRestore) {
+            expect(err).to.be.null;
+            expect(runToRestore).to.be.undefined;
             expect($('#playbyplay')).to.not.exist;
-        });
+            done();
+        }
 
-        it('should call the callback', () => {
-            expect(callbackErr).to.be.null;
-            expect(callbackRun).to.be.undefined;
-        });
+        playbyplay.show({onShow: onShow}, callback);
     });
 
     after(playbyplay.clear);

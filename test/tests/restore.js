@@ -1,36 +1,28 @@
-describe('after clearing and appending a run and showing', () => {
+describe('restore: after clearing and appending a run', () => {
     const run = {input: 'i1', output: 'o1', status: 's1'};
-    let callbackErr;
-    let callbackRun;
 
     beforeEach(done => {
-        callbackErr = undefined;
-        callbackRun = undefined;
-
-        playbyplay.clear(() => {
-            playbyplay.append(run, () => {
-                playbyplay.show({onShow: done}, (err, r) => {
-                    callbackErr = err;
-                    callbackRun = r;
-                });
-            });
+        playbyplay.clear(err => {
+            expect(err).to.be.null;
+            playbyplay.append(run, done);
         });
     });
 
-    it('should not call the callback', () => {
-        expect(callbackErr).to.be.undefined;
-        expect(callbackRun).to.be.undefined;
-    });
-
-    describe('and restoring', () => {
-        beforeEach(() => {
+    it('should call the callback and hide', done => {
+        function onShow(err) {
+            expect(err).to.be.null;
+            expect($('#playbyplay')).to.exist;
             $('.playbyplay-restore').click();
-        });
+        }
 
-        it('should call the callback', () => {
-            expect(callbackErr).to.be.null;
-            expect(callbackRun).to.deep.equal(run);
-        });
+        function callback(err, runToRestore) {
+            expect(err).to.be.null;
+            expect(runToRestore).to.deep.equal(run);
+            expect($('#playbyplay')).to.not.exist;
+            done();
+        }
+
+        playbyplay.show({onShow: onShow}, callback);
     });
 
     after(playbyplay.clear);
