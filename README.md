@@ -65,15 +65,10 @@ Shows a view of all runs previously appended to history. The user can either res
 ##### Example
 
 ```js
-playbyplay.show(function(err, run) {
-    if (err) {
-        console.error('Show failed:', err);
-        return;
-    }
+playbyplay.show(function(run) {
     if (run) {
-        console.log('Restoring run:', run);
-        // Replace the contents of the playground
-        // input textarea with `run.input`.
+        // Replace the contents of the playground input textarea with `run.input`.
+        document.getElementById('input-textarea').value = run.input;
     }
 });
 ```
