@@ -2,6 +2,8 @@
 
 playbyplay is a browser library that shows users of language playgrounds a history of their experiments.
 
+playbyplay weighs ~2.5k minified & gzipped (JS ~1k + CSS ~0.5k + [localhistory](https://github.com/peferron/localhistory) ~1k) and has no other dependencies.
+
 A [very simple demo](https://rawgit.com/peferron/playbyplay/master/demo/index.html) is available in the `demo` directory.
 
 # Installation
