@@ -1,0 +1,64 @@
+body {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 1000px;
+}
+
+.playground, .playground textarea, .playground button {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.playground table, .playground tbody {
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.playground th {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.playground .wide {
+    width: 50%;
+}
+
+.playground textarea {
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+}
+
+#output {
+    background: #F0F0F0;
+}
+
+#output.success {
+    color: #228B22;
+}
+
+#output.error {
+    color: red;
+}
+
+.playground button {
+    border: 0;
+    border-radius: 5px;
+    border-spacing: 0;
+    padding: 10px;
+    cursor: pointer;
+    background: #00AF33;
+    color: white;
+}
+
+#run {
+    margin: 10px;
+}
+
+#show-history {
+    margin-top: 10px;
+}
