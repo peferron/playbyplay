@@ -1,5 +1,7 @@
-const utils = {
+const utils = { // eslint-disable-line no-unused-vars
     expectRuns: function(runs) {
+        expect($('#playbyplay')).to.exist;
+
         const $runs = $('.playbyplay-run');
         expect($runs.length).to.equal(runs.length);
 
