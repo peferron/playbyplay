@@ -1,4 +1,4 @@
-/* playbyplay v2.0.0 | https://github.com/peferron/playbyplay | License: MIT */
+/* playbyplay v2.1.0 | https://github.com/peferron/playbyplay | License: MIT */
 #playbyplay {
     position: absolute;
     top: 0;
@@ -40,7 +40,8 @@
 }
 
 .playbyplay-run {
-    border-top: 1px solid #CCC;
+    border: 1px solid #CCC;
+    border-width: 1px 0;
 }
 
 .playbyplay-col {

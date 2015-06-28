@@ -1,4 +1,4 @@
-/* playbyplay v2.0.0 | https://github.com/peferron/playbyplay | License: MIT */
+/* playbyplay v2.1.0 | https://github.com/peferron/playbyplay | License: MIT */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : factory(global.playbyplay = {});
 })(this, function (exports) {
