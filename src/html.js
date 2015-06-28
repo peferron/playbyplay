@@ -6,15 +6,9 @@ const escapeHTML = str => {
     return div.innerHTML;
 };
 
-const containerInnerHTML = runs =>
-`<button class="playbyplay-button playbyplay-hide">&lt; Back</button>` +
-`${runs.length ? runsHTML(runs) : emptyHTML}`;
+const emptyHTML = `<span class="playbyplay-empty">History is empty.</span>`;
 
-const runsHTML = runs =>
-`<button class="playbyplay-button playbyplay-clear">Clear</button>
-<table class="playbyplay-runs">
-    ${runs.map(runHTML).join('')}
-</table>`;
+const statusClass = run => run.status ? `playbyplay-status-${escapeClass(run.status)}` : '';
 
 const runHTML = (run, index) =>
 `<tr class="playbyplay-run ${statusClass(run)}">
@@ -31,8 +25,14 @@ const runHTML = (run, index) =>
     </td>
 </tr>`;
 
-const statusClass = run => run.status ? `playbyplay-status-${escapeClass(run.status)}` : '';
+const runsHTML = runs =>
+`<button class="playbyplay-button playbyplay-clear">Clear</button>
+<table class="playbyplay-runs">
+    ${runs.map(runHTML).join('')}
+</table>`;
 
-const emptyHTML = `<span class="playbyplay-empty">History is empty.</span>`;
+const containerInnerHTML = runs =>
+`<button class="playbyplay-button playbyplay-hide">&lt; Back</button>` +
+`${runs.length ? runsHTML(runs) : emptyHTML}`;
 
 export default containerInnerHTML;
