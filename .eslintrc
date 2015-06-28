@@ -33,7 +33,7 @@
             "vars": "local",
             "args": "after-used"
         }],
-        "no-use-before-define": "nofunc",
+        "no-use-before-define": [2, "nofunc"],
         "comma-dangle": [2, "never"],
         "no-cond-assign": [2, "always"],
         "no-console": 1,
