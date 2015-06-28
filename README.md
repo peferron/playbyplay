@@ -36,7 +36,7 @@ Appends a run to history.
         status: 'success' or 'warning' or 'error' (optional)
     }
     ```
-* **`[options]`** is an optional set of key/value pairs. See [localhistory.append](https://github.com/peferron/localhistory#localhistoryappendkey-entry-options-callback).
+* **`[options]`** is an optional set of key/value pairs passed to [localhistory.append](https://github.com/peferron/localhistory#localhistoryappendkey-entry-options-callback). `appendIfEqualToLast` is set to `false` by default.
 * **`[callback]`** is an optional callback function, taking one argument:
   * **`err`** is `null` if the run was appended successfully, or an `Error` object if the run was not appended successfully.
 
