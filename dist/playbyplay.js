@@ -1,4 +1,4 @@
-/* playbyplay v1.0.0 | https://github.com/peferron/playbyplay | License: MIT */
+/* playbyplay v2.0.0 | https://github.com/peferron/playbyplay | License: MIT */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) : typeof define === 'function' && define.amd ? define(['exports'], factory) : factory(global.playbyplay = {});
 })(this, function (exports) {
@@ -13,40 +13,57 @@
         return div.innerHTML;
     };
 
-    var containerInnerHTML = function containerInnerHTML(runs) {
-        return '<button class="playbyplay-button playbyplay-hide">&lt; Back</button>' + ('' + (runs.length ? runsHTML(runs) : emptyHTML));
-    };
+    var emptyHTML = '<span class="playbyplay-empty">History is empty.</span>';
 
-    var runsHTML = function runsHTML(runs) {
-        return '<button class="playbyplay-button playbyplay-clear">Clear</button>\n<table class="playbyplay-runs">\n    ' + runs.map(runHTML).join('') + '\n</table>';
+    var statusClass = function statusClass(run) {
+        return run.status ? 'playbyplay-status-' + escapeClass(run.status) : '';
     };
 
     var runHTML = function runHTML(run, index) {
         return '<tr class="playbyplay-run ' + statusClass(run) + '">\n    <td class="playbyplay-col playbyplay-input">\n        <pre class="playbyplay-pre"><code>' + escapeHTML(run.input) + '</code></pre>\n    </td>\n    <td class="playbyplay-col playbyplay-output">\n        <pre class="playbyplay-pre">' + escapeHTML(run.output) + '</pre>\n    </td>\n    <td class="playbyplay-col">\n        <button class="playbyplay-button playbyplay-restore" data-index="' + index + '">\n            Restore\n        </button>\n    </td>\n</tr>';
     };
 
-    var statusClass = function statusClass(run) {
-        return run.status ? 'playbyplay-status-' + escapeClass(run.status) : '';
+    var runsHTML = function runsHTML(runs) {
+        return '<button class="playbyplay-button playbyplay-clear">Clear</button>\n<table class="playbyplay-runs">\n    ' + runs.map(runHTML).join('') + '\n</table>';
     };
 
-    var emptyHTML = '<span class="playbyplay-empty">History is empty.</span>';
+    var containerInnerHTML = function containerInnerHTML(runs) {
+        return '<button class="playbyplay-button playbyplay-hide">&lt; Back</button>' + ('' + (runs.length ? runsHTML(runs) : emptyHTML));
+    };
 
     var key = 'playbyplay_0fE#n9asNy4^MD1jfj&!';
     var containerId = 'playbyplay';
 
+    var optionsOrEmpty = function optionsOrEmpty(options) {
+        return options && typeof options === 'object' ? options : {};
+    };
+
     var supported = localhistory.supported;
 
     function append(run, options, callback) {
+        var cb = typeof options === 'function' ? options : callback;
+        var opts = filledAppendOptions(options);
+
         setTimeout(function () {
-            localhistory.append(key, run, options, callback);
+            localhistory.append(key, run, opts, cb);
         }, 0);
+    }
+
+    function filledAppendOptions(options) {
+        var opts = optionsOrEmpty(options);
+
+        if (!opts.hasOwnProperty('appendIfEqualToLast')) {
+            opts.appendIfEqualToLast = false;
+        }
+
+        return opts;
     }
 
     // options is optional, callback is required. Usually, required arguments go first, but having the
     // callback last leads to cleaner calling code with closures.
     function show(options, callback) {
         var cb = typeof options === 'function' ? options : callback;
-        var opts = fillShowOptions(typeof options === 'object' ? options : {});
+        var opts = filledShowOptions(options);
 
         localhistory.load(key, function (err, runs) {
             if (err) {
@@ -59,11 +76,14 @@
         });
     }
 
-    function fillShowOptions(options) {
-        if (!options.parent) {
-            options.parent = document.body;
+    function filledShowOptions(options) {
+        var opts = optionsOrEmpty(options);
+
+        if (!opts.parent) {
+            opts.parent = document.body;
         }
-        return options;
+
+        return opts;
     }
 
     function showRuns(runs, options, callback) {

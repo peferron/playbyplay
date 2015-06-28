@@ -1,6 +1,6 @@
 {
   "name": "playbyplay",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "LocalStorage history for language playgrounds.",
   "scripts": {
     "build": "gulp clean && gulp build",
