@@ -45,17 +45,25 @@ const exportedName = 'playbyplay';
 const libJs = exportedName + '.js';
 const libCss = exportedName + '.css';
 
+function header() {
+    const pkg = require('./package.json');
+    return '/* ' + pkg.name + ' v' + pkg.version + ' | ' + pkg.homepage +
+        ' | License: ' + pkg.license + ' */\n';
+}
+
 gulp.task('clean', function(done) {
     del([dev, 'test/coverage'], done);
 });
 
 gulp.task('build', function(done) {
     gulp.src(path.join(src, 'index.css'))
+        .pipe($.header(header()))
         .pipe($.rename(libCss))
         .pipe(gulp.dest(dev))
         .pipe($.rename(path.basename(libCss, '.css') + '.min.css'))
         .pipe($.sourcemaps.init())
         .pipe($.minifyCss())
+        .pipe($.header(header()))
         .pipe($.sourcemaps.write('./'))
         .pipe(gulp.dest(dev));
 
@@ -77,6 +85,7 @@ gulp.task('build', function(done) {
         fs.writeFileSync(map, res.map.toString());
 
         $.file(map, res.code, {src: true})
+            .pipe($.header(header()))
             .pipe($.rename(libJs))
             .pipe($.sourcemaps.init({loadMaps: true}))
             .pipe($.babel({blacklist: ['useStrict']}))
@@ -86,6 +95,7 @@ gulp.task('build', function(done) {
             .pipe($.rename(path.basename(libJs, '.js') + '.min.js'))
             .pipe($.sourcemaps.init({loadMaps: true}))
             .pipe($.uglify())
+            .pipe($.header(header()))
             .pipe($.sourcemaps.write('./'))
             .pipe(gulp.dest(dev))
             .on('end', function() {
