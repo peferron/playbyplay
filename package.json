@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "LocalStorage history for language playgrounds.",
   "scripts": {
-    "build": "gulp clean build",
+    "build": "gulp clean && gulp build",
     "test": "gulp test",
     "watch": "gulp watch",
     "lint": "gulp lint",
